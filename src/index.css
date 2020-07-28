@@ -1,13 +1,228 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+
+* {
+  font-family: "Open Sans", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  text-decoration: none !important;
+}
+
+.searchbutton{
+  cursor:pointer;
+}
+.searchbutton:disabled{
+  cursor:not-allowed;
+  background:gray!important;
+}
+
+
+
+.pokecard,
+.card {
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.pokecard h5 {
+  font-size: 1rem;
+}
+
+.id {
+  position: absolute;
+  padding: 4px;
+  font-size: 0.8rem;
+  /* color: orange; */
+  color: black;
+  border-top-left-radius: 15px;
+  background: orange;
+}
+#back{
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-size: 1.5rem;
+
+}
+    
+
+
+.pokecard:hover {
+  box-shadow: 0 0 !important;
+  cursor: pointer;
+}
+.pokelist {
+  width: 48%;
+  position: absolute;
+  top: 100%;
+  background: white;
+  border-radius: 5px;
+  /*display: none;*/
+  height:30vh;
+}
+
+.pokelist-item{
+  padding:5px;
+  cursor:pointer;
+}
+.pokelist-item:hover{
+  background-color: lightgray;
+}
+
+input:focus + .pokelist {
+  display: block;
+}
+
+/* pokemon */
+.pokelink:hover {
+  background: orange !important;
+}
+
+.box {
+  flex: 1;
+  height:75%;
+}
+
+.sprite_wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sprite {
+  flex: 1;
+}
+
+.sprites {
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: auto;
+  scrollbar-color: lightgray rgb(138, 138, 138);
+}
+/* Works on Chrome/Edge/Safari */
+.sprites::-webkit-scrollbar {
+  width: 10px;
+}
+.sprites::-webkit-scrollbar-track {
+  background: lightgray;
+}
+.sprites::-webkit-scrollbar-thumb {
+  background-color: rgb(138, 138, 138);
+  border-radius: 20px;
+}
+
+.sprites img {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 10px;
+  border: 2px solid orange;
+  padding: 10px;
+}
+.sprites img:hover {
+  border: none;
+  cursor: pointer;
+}
+
+.movesetbox{
+  overflow-y:scroll;
+  height:80%;
+}
+
+
+.moveset {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pokecardwrapper{
+
+}
+
+.read-more{
+  cursor:pointer;
+}
+.read-more:hover{
+     text-decoration: underline;
+
+}
+
+/*modal*/
+
+.backdropstyle{
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.3);
+      padding: 50px;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.modalstyle{
+    background-color:#fff;
+      border-radius: 5px;
+      width:50%;
+      max-height: 80vh;
+      margin:0 auto;
+      padding: 30px;
+      overflow: auto;
+}
+
+.closebutton{
+  /*display:inline;*/
+  width:25px;
+  margin-left:auto;
+}
+.closebutton button{
+  width: 20px;
+    border: none;
+    color: white;
+    background: red;
+    border-radius: 50%;
+    height: 20px;
+    line-height: 1;
+}
+
+.closebutton button:hover{
+  background:rgb(200,0,0);
+}
+
+
+@media only screen and (min-width:768px){
+    .pokecardwrapper{
+        width:75vw;
+        height:75vh;
+      }
+
+}
+
+@media only screen and (max-width:768px){
+  .box{
+    height:75vh;
+  }
+  .pokebody{
+    padding:0;
+  }
+  .pokecontainer{
+    padding:0;
+  }
+  .mobile-img{
+    padding-top:50px;
+  }
+  .mobile-text{
+    font-size:4rem;
+  }
+
+  .backdropstyle{
+    padding:10px;
+  }
+  .modalstyle{
+    width:95%;
+  }
 }
