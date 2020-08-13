@@ -1,57 +1,68 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import SearchList from "./SearchList";
 
-import {pokemons} from "../pokemon";
+import { pokemons } from "../pokemon";
 
-export default function Searchbar({setisSearched,setSearchedPokes}) {
-  const [pokemontext,setpokemontext]=useState('');
-  const [showlist,setshowlist]=useState(false);
-  const [filterlist,setfilterlist]=useState(pokemons);
+export default function Searchbar({ setisSearched, setSearchedPokes }) {
+  const [pokemontext, setpokemontext] = useState("");
+  const [showlist, setshowlist] = useState(false);
+  const [filterlist, setfilterlist] = useState(pokemons);
 
-  const handleFocus=(e)=>{
+  const handleFocus = e => {
     setshowlist(true);
-  }
-  const handleFocusOut=(e)=>{
+  };
+  const handleFocusOut = e => {
     setshowlist(false);
-  }
+  };
 
-  const handleInputChange=(e)=>{
-
-    const {value}=e.target;
+  const handleInputChange = e => {
+    const { value } = e.target;
     setpokemontext(e.target.value);
 
-    const pokes=pokemons.filter(poke=>{
-      return poke.name.toLowerCase().indexOf(value.toLowerCase())!==-1
-    })
+    const pokes = pokemons.filter(poke => {
+      return poke.name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
+    });
 
     setfilterlist(pokes);
 
-     if(value===''){
+    if (value === "") {
       setisSearched(false);
-     }
-  }
+    }
+  };
 
-  const handleSelectPoke=(poke)=>{
+  const handleSelectPoke = poke => {
+    setfilterlist([poke]);
+    setpokemontext(poke.name);
+    setshowlist(false);
+  };
 
-        setfilterlist([poke]);
-        setpokemontext(poke.name)
-  }
-
-  const handleSubmit=(e)=>{
+  const handleSubmit = e => {
     e.preventDefault();
-    // setshowlist(false);
     setisSearched(true);
     setSearchedPokes(filterlist);
+  };
 
-    // console.log(filterlist)
-  }
-
+  const handleInputClick = e => {
+    e.stopPropagation();
+  };
   return (
-    <div className="shadow-sm pb-4">
+    <div className="shadow-sm pb-4" onClick={handleFocusOut}>
       <div className="container d-flex flex-column align-items-center mt-4 sticky-top ">
         <h1 className="font-weight-normal mb-2">Pokedex</h1>
-        <p>by <a href="https://www.github.com/satendrassharma" target="_blank" rel="noopener noreferrer">satendra sharma</a></p>
-        <form className="form-inline w-100 justify-content-center align-items-center" onSubmit={handleSubmit}>
+        <p>
+          by
+          <a
+            href="https://www.github.com/satendrassharma"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            satendra sharma
+          </a>
+        </p>
+        <form
+          className="form-inline w-100 justify-content-center align-items-center"
+          onSubmit={handleSubmit}
+        >
           <div className="form-group mb-2 mr-1 w-50 w-md-25">
             <input
               type="text"
@@ -61,17 +72,21 @@ export default function Searchbar({setisSearched,setSearchedPokes}) {
               onChange={handleInputChange}
               value={pokemontext}
               onFocus={handleFocus}
-              onBlur={handleFocusOut}
+              onClick={handleInputClick}
               autoComplete="off"
               aria-autocomplete="list"
             />
-            {showlist && <SearchList list={filterlist} handleSelectPoke={handleSelectPoke} /> }
-            
-           </div> 
+            {showlist && (
+              <SearchList
+                list={filterlist}
+                handleSelectPoke={handleSelectPoke}
+              />
+            )}
+          </div>
           <button
             type="submit"
             className="btn btn-primary mb-2 rounded-pill bg-warning border-0 searchbutton"
-            disabled={pokemontext===""?true:false}
+            disabled={pokemontext === "" ? true : false}
           >
             Search
           </button>
