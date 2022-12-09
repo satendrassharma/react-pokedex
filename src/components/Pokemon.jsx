@@ -53,7 +53,7 @@ export default function Pokemon() {
               <span id="back"><Link to="/">&#8592;</Link></span>
 
                 <img
-                  src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
                   className="card-img img-fluid m-auto w-75 mobile-img"
                   alt="..."
                 />
